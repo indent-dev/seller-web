@@ -1,28 +1,23 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
-import { Button } from 'antd';
+import { Button, Layout } from 'antd'
+import React from 'react'
+import { FormIklan } from './components/FormIklan/FormIklan'
+import { ListIklan } from './components/ListIklan/ListIklan'
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <Button type="primary">Antd Button</Button>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+export const App = () => {
+    const { Header, Footer, Sider, Content } = Layout;
+    return (
+        <div>
+            <Layout>
+                <Header>
+                    Seller Web
+                    <Button>Add Iklan</Button>
+                    {/* <FormIklan /> */}
+                </Header>
+                <Content>
+                    <ListIklan></ListIklan>
+                </Content>
+                <Footer>Powered by Indent Team</Footer>
+            </Layout>
+        </div>
+    )
 }
-
-export default App;
