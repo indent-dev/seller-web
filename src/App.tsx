@@ -1,23 +1,45 @@
-import { Button, Layout } from 'antd'
-import React from 'react'
-import { FormIklan } from './components/FormIklan/FormIklan'
-import { ListIklan } from './components/ListIklan/ListIklan'
+import React from "react";
+import { Button, Layout, Input } from "antd";
+import { PlusOutlined } from "@ant-design/icons";
+import ListIklan from "./components/ListIklan/ListIklan";
 
-export const App = () => {
-    const { Header, Footer, Sider, Content } = Layout;
-    return (
-        <div>
-            <Layout>
-                <Header>
-                    Seller Web
-                    <Button>Add Iklan</Button>
-                    {/* <FormIklan /> */}
-                </Header>
-                <Content>
-                    <ListIklan></ListIklan>
-                </Content>
-                <Footer>Powered by Indent Team</Footer>
-            </Layout>
-        </div>
-    )
+function App() {
+  const { Search } = Input;
+  const { Header, Footer, Content } = Layout;
+
+  return (
+    <div>
+      <Layout>
+        <Header
+          style={{
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "space-between",
+          }}
+        >
+          <h1 style={{ margin: 0, color: "#fff" }}>Seller Web</h1>
+          <Button type="primary" shape="round" icon={<PlusOutlined />}>
+            Tambah Iklan
+          </Button>
+        </Header>
+        <Content
+          style={{
+            padding: "50px",
+            backgroundColor: "#fff",
+            textAlign: "center",
+          }}
+        >
+          <Search
+            placeholder="input search text"
+            enterButton
+            style={{ width: "50%", marginBottom: "30px" }}
+          />
+          <ListIklan />
+        </Content>
+        <Footer style={{ textAlign: "center" }}>Powered by Indent Team</Footer>
+      </Layout>
+    </div>
+  );
 }
+
+export default App;
