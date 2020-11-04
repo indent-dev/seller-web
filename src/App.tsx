@@ -1,25 +1,31 @@
 import React from "react";
-import { Button, Layout } from "antd";
-import { PlusOutlined } from "@ant-design/icons";
+
+import { Button, Layout, Input, Row, Avatar} from "antd";
+import { PlusOutlined, UserOutlined } from "@ant-design/icons";
 import ListIklan from "./components/ListIklan/ListIklan";
 
-function App() {
-  const { Header, Footer, Content } = Layout;
+const flexStyle = {
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "space-between"
+}
 
+const { Search } = Input;
+const { Header, Footer, Content } = Layout;
+
+function App() {
   return (
     <div>
       <Layout>
         <Header
-          style={{
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "space-between",
-          }}
+          style={flexStyle}
         >
-          <h1 style={{ margin: 0, color: "#fff" }}>Seller Web</h1>
-          <Button type="primary" shape="round" icon={<PlusOutlined />}>
-            Add Iklan
-          </Button>
+          <h1 style={{ margin: "0", color: "#fff", fontWeight: "bold" }}>Seller Web</h1>
+          <div style={flexStyle}>
+            <h3 style={{ margin: "0 10px", color: "#fff" }}>Username</h3>
+            <Avatar size="large" icon={<UserOutlined />} />
+          </div>
+
         </Header>
         <Content
           style={{
@@ -28,6 +34,19 @@ function App() {
             textAlign: "center",
           }}
         >
+          <Row gutter={{ xs: 8, sm: 8, md: 24, lg: 24 }} style={{marginBottom: "50px", padding: "0 50px", display: "flex",
+            alignItems: "center",
+            justifyContent: "space-between"}}>
+            <Search
+              placeholder="input search text"
+              enterButton
+              style={{ width: "400px" }}
+            />
+            <Button type="primary" icon={<PlusOutlined />}>
+              Add Iklan
+            </Button>
+          </Row>
+
           <ListIklan />
         </Content>
         <Footer style={{ textAlign: "center" }}>Powered by Indent Team</Footer>

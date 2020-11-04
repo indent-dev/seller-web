@@ -22,7 +22,6 @@ const deleteIklan = (title: string) => {
   message.info(`${title} deleted successfully!`);
 }
 
-
 const IklanItem = (props: props) => {
   return (
     <div>
