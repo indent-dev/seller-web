@@ -1,4 +1,5 @@
 import React from "react";
+
 import { Button, Layout, Input, Row, Avatar} from "antd";
 import { PlusOutlined, UserOutlined } from "@ant-design/icons";
 import ListIklan from "./components/ListIklan/ListIklan";
@@ -24,6 +25,7 @@ function App() {
             <h3 style={{ margin: "0 10px", color: "#fff" }}>Username</h3>
             <Avatar size="large" icon={<UserOutlined />} />
           </div>
+
         </Header>
         <Content
           style={{
@@ -44,6 +46,7 @@ function App() {
               Add Iklan
             </Button>
           </Row>
+
           <ListIklan />
         </Content>
         <Footer style={{ textAlign: "center" }}>Powered by Indent Team</Footer>
