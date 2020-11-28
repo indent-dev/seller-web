@@ -1,14 +1,18 @@
 import React from "react";
 
+
 import { Button, Layout, Input, Row, Avatar} from "antd";
 import { PlusOutlined, UserOutlined } from "@ant-design/icons";
+
 import ListIklan from "./components/ListIklan/ListIklan";
+import AddIklan from "./components/AddIklan/AddIklan";
 
 const flexStyle = {
   display: "flex",
   alignItems: "center",
   justifyContent: "space-between"
 }
+
 
 const { Search } = Input;
 const { Header, Footer, Content } = Layout;
@@ -25,7 +29,6 @@ function App() {
             <h3 style={{ margin: "0 10px", color: "#fff" }}>Username</h3>
             <Avatar size="large" icon={<UserOutlined />} />
           </div>
-
         </Header>
         <Content
           style={{
@@ -37,6 +40,7 @@ function App() {
           <Row gutter={{ xs: 8, sm: 8, md: 24, lg: 24 }} style={{marginBottom: "50px", padding: "0 50px", display: "flex",
             alignItems: "center",
             justifyContent: "space-between"}}>
+
             <Search
               placeholder="input search text"
               enterButton
@@ -45,6 +49,7 @@ function App() {
             <Button type="primary" icon={<PlusOutlined />}>
               Add Iklan
             </Button>
+
           </Row>
 
           <ListIklan />
