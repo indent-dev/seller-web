@@ -5,6 +5,7 @@ import { Layout } from "antd";
 import { PlusOutlined, UserOutlined } from "@ant-design/icons";
 import ListIklan from "../../components/ListIklan/ListIklan";
 import AddIklan from "../../components/AddIklan/AddIklan";
+import { Iklan } from "../../types";
 
 const flexStyle = {
   display: "flex",
@@ -18,15 +19,23 @@ const { Search } = Input;
 const Dashboard = () => {
   const [isModalVisible, setIsModalVisible] = React.useState<boolean>(false);
 
-  const [listIklan, setListIklan] = React.useState([
+  const [listIklan, setListIklan] = React.useState<Iklan[]>([
     {
-      id: 1,
-      image: "https://placeimg.com/640/480/tech",
-      title: "Lenovo Legino 5",
-      description:
-        "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Molestiae laboriosam harum ipsum. Deserunt quo expedita odio illum similique voluptatibus hic.",
-      date: "Sunday, 25 Oktober 2020",
-      price: 14500000,
+      isDeleted: true,
+      _id: "12",
+      product_name: "test",
+      image: "gambar",
+      price: 1000,
+      createdAt: "2016-01-17",
+      updatedAt: "2016-01-17",
+      category: {
+        _id: "12",
+        name: "ATK",
+        createdAt: "2016-01-17",
+        updatedAt: "2016-01-17",
+        __v: 0,
+      },
+      __v: 0,
     },
   ]);
 
@@ -44,12 +53,12 @@ const Dashboard = () => {
       <Content
         style={{
           padding: "50px",
-          backgroundColor: "#fff",
           textAlign: "center",
+          minHeight: "100vh",
         }}
       >
         <Row
-          gutter={{ xs: 8, sm: 8, md: 24, lg: 24 }}
+          gutter={{ xs: 8, lg: 24 }}
           style={{
             marginBottom: "50px",
             padding: "0 50px",
@@ -59,9 +68,16 @@ const Dashboard = () => {
           }}
         >
           <Search
-            placeholder="input search text"
+            placeholder="Search Product"
             enterButton
             style={{ width: "400px" }}
+          />
+
+          <AddIklan
+            modalVisible={isModalVisible}
+            toggleModal={setIsModalVisible}
+            addIklan={setListIklan}
+            iklans={listIklan}
           />
 
           <Button
@@ -71,18 +87,15 @@ const Dashboard = () => {
           >
             Add Iklan
           </Button>
-
-          <AddIklan
-            modalVisible={isModalVisible}
-            toggleModal={setIsModalVisible}
-            addIklan={setListIklan}
-            iklans={listIklan}
-          />
         </Row>
 
         <ListIklan iklans={listIklan} />
       </Content>
-      <Footer style={{ textAlign: "center" }}>Powered by Indent Team</Footer>
+      <Footer
+        style={{ textAlign: "center", color: "#fff", backgroundColor: "#000" }}
+      >
+        Powered by Indent Team
+      </Footer>
     </Layout>
   );
 };

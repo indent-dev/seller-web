@@ -1,25 +1,54 @@
 import React from "react";
 import { Modal, InputNumber } from "antd";
-import { Form, Input, Button } from "antd";
-
+import { Form, Input } from "antd";
+import { Iklan } from "../../types";
 import "./AddIklan.css";
 
 type FormProps = {
   modalVisible: boolean;
-  iklans: any[];
+  iklans: Iklan[];
   toggleModal: (isVisible: boolean) => void;
-  addIklan: (iklans: any[]) => void;
+  addIklan: (iklans: Iklan[]) => void;
+};
+
+const layout = {
+  labelCol: { span: 6 },
+  wrapperCol: { span: 6 },
+};
+const tailLayout = {
+  wrapperCol: { span: 18 },
 };
 
 const AddIklan = (props: FormProps) => {
+  const [form] = Form.useForm();
+
   const handleCancel = () => {
     props.toggleModal(false);
   };
 
   const onFinish = (values: any) => {
-    props.addIklan([...props.iklans, values]);
-    console.log("Success:", values);
-
+    const randLetter = String.fromCharCode(65 + Math.floor(Math.random() * 26));
+    const uniqid = randLetter + Date.now();
+    const datetime = new Date();
+    const newValues: Iklan = {
+      isDeleted: true,
+      _id: uniqid,
+      product_name: values.product_name,
+      image: values.image,
+      price: values.price,
+      createdAt: "datetime",
+      updatedAt: "datetime",
+      category: {
+        _id: uniqid,
+        name: "ATK",
+        createdAt: "datetime",
+        updatedAt: "datetime",
+        __v: 0,
+      },
+      __v: 0,
+    };
+    props.addIklan([...props.iklans, newValues]);
+    console.log("Success:", newValues);
     props.toggleModal(false);
   };
 
@@ -28,59 +57,50 @@ const AddIklan = (props: FormProps) => {
       <Modal
         title="Add Your Advertisement"
         visible={props.modalVisible}
-        footer={null}
         onCancel={handleCancel}
+        okText="Submit"
+        cancelText="Cancel"
+        onOk={() => {
+          form
+            .validateFields()
+            .then((values) => {
+              onFinish(values);
+              form.resetFields();
+            })
+            .catch((info) => {
+              console.log("Validate Failed:", info);
+            });
+        }}
       >
-        <Form
-          name="basic"
-          initialValues={{ remember: true }}
-          onFinish={onFinish}
-        >
+        <Form {...layout} form={form} name="basic" id="formAddIklan">
           <Form.Item
+            {...tailLayout}
             label="Product Name"
+            labelAlign="left"
             name="product_name"
-            rules={[
-              { required: true, message: "Please input your Product Name!" },
-            ]}
+            rules={[{ required: true, message: "Please input prodcut name!" }]}
           >
-            <Input />
+            <Input style={{ width: "100%" }} />
           </Form.Item>
-
           <Form.Item
+            {...tailLayout}
             label="Price"
+            labelAlign="left"
             name="price"
-            rules={[{ required: true, message: "Please input your Price!" }]}
+            rules={[{ required: true, message: "Please input product price!" }]}
           >
-            <InputNumber />
+            <InputNumber size="small" style={{ width: "100%" }} />
           </Form.Item>
-
-          <Form.Item>
-            <Button htmlType="submit"> Submit </Button>
+          <Form.Item
+            {...tailLayout}
+            label="Image URL"
+            labelAlign="left"
+            name="image"
+            rules={[{ required: true, message: "Please input image URL!" }]}
+          >
+            <Input style={{ width: "100%" }} />
           </Form.Item>
         </Form>
-
-        {/* <label>Brand</label>
-        <br />
-        <input type="text" name="brand" placeholder="Brand" />
-        <br /> <br />
-        <label>Price</label>
-        <br />
-        <input type="text" name="price" placeholder="Rp. " />
-        <br /> <br />
-        <label>Date</label>
-        <br />
-        <DatePicker
-          style={{
-            width: "100%",
-            border: "1px solid black",
-            borderRadius: "5px",
-          }}
-        />
-        <br /> <br />
-        <label>Description</label>
-        <br />
-        <input type="" name="description" placeholder="Description" />
-        <br /> */}
       </Modal>
     </div>
   );

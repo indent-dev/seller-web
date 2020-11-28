@@ -1,37 +1,32 @@
-import React, { useState } from "react";
-import { init } from "./Init";
+import React from "react";
 import IklanItem from "../IklanItem/IklanItem";
+import { Iklan } from "../../types";
 import { message } from "antd";
 
-interface IItem {
-  id: number;
-  title: string;
-  image: string;
-  description: string;
-  price: number;
-  date: string;
-}
-
 type ListIklanProps = {
-  iklans: any[];
+  iklans: Iklan[];
 };
 
 const ListIklan = (props: ListIklanProps) => {
-  const [items, setItems] = useState<IItem[]>(init);
-
-  const deleteItem = (id: number) => {
-    const newItems = items.filter((item) => item.id !== id);
-    setItems(newItems);
+  const deleteItem = (id: string) => {
+    // const newItems = items.filter((item) => item._id !== id);
+    // setItems(newItems);
     message.info(`${id} deleted successfully!`);
   };
 
   return (
-    <div>
+    <div
+      style={{
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "stretch",
+      }}
+    >
       {props.iklans.map((item) => (
         <IklanItem
-          key={item.id}
+          key={item._id}
           item={item}
-          deleteItem={() => deleteItem(item.id)}
+          deleteItem={() => deleteItem(item._id)}
         />
       ))}
     </div>

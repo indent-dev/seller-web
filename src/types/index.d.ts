@@ -5,15 +5,15 @@ export type Iklan = {
     price: number,
     category: Category,
     image: string,
-    createdAt: Date,
-    updatedAt: Date,
+    createdAt: string,
+    updatedAt: string,
     __v: number
 }
 
 export type Category = {
     _id: string,
     name: string,
-    createdAt: Date,
-    updatedAt: Date,
+    createdAt: string,
+    updatedAt: string,
     __v: number
 }
