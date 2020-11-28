@@ -13,12 +13,12 @@ interface IItem {
   image: string;
   description: string;
   price: number;
-  date: string;
+  date?: string;
 }
 
 type props = {
   item: IItem;
-  deleteItem: Function;
+  deleteItem: (id: number) => void;
 };
 
 const text = "Are you sure to delete this iklan?";

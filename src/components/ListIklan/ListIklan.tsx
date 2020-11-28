@@ -12,7 +12,11 @@ interface IItem {
   date: string;
 }
 
-const ListIklan = () => {
+type ListIklanProps = {
+  iklans: any[];
+};
+
+const ListIklan = (props: ListIklanProps) => {
   const [items, setItems] = useState<IItem[]>(init);
 
   const deleteItem = (id: number) => {
@@ -23,7 +27,7 @@ const ListIklan = () => {
 
   return (
     <div>
-      {items.map((item) => (
+      {props.iklans.map((item) => (
         <IklanItem
           key={item.id}
           item={item}
