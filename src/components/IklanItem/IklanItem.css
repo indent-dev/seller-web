@@ -1,10 +1,12 @@
 .styleCard {
-  box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
-  overflow: hidden;
-  border-radius: 8px;
-  padding: 0px;
-  border-left: 5px solid rgb(0, 153, 255);
-  margin: 20px 0;
+  width: 230px;
+  text-align: center;
+  margin: 15px;
+  border-bottom: 3px solid #096dd9;
+}
+
+.styleCard:hover {
+  border-bottom: 3px solid #096dd9;
 }
 
 .btn {

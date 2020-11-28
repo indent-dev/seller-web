@@ -6,6 +6,7 @@ import { PlusOutlined, UserOutlined } from "@ant-design/icons";
 import ListIklan from "../../components/ListIklan/ListIklan";
 import AddIklan from "../../components/AddIklan/AddIklan";
 import { Iklan } from "../../types";
+import { init } from "../../components/ListIklan/Init";
 
 const flexStyle = {
   display: "flex",
@@ -19,25 +20,7 @@ const { Search } = Input;
 const Dashboard = () => {
   const [isModalVisible, setIsModalVisible] = React.useState<boolean>(false);
 
-  const [listIklan, setListIklan] = React.useState<Iklan[]>([
-    {
-      isDeleted: true,
-      _id: "12",
-      product_name: "test",
-      image: "gambar",
-      price: 1000,
-      createdAt: "2016-01-17",
-      updatedAt: "2016-01-17",
-      category: {
-        _id: "12",
-        name: "ATK",
-        createdAt: "2016-01-17",
-        updatedAt: "2016-01-17",
-        __v: 0,
-      },
-      __v: 0,
-    },
-  ]);
+  const [listIklan, setListIklan] = React.useState<Iklan[]>(init);
 
   return (
     <Layout>
@@ -60,7 +43,7 @@ const Dashboard = () => {
         <Row
           gutter={{ xs: 8, lg: 24 }}
           style={{
-            marginBottom: "50px",
+            marginBottom: "30px",
             padding: "0 50px",
             display: "flex",
             alignItems: "center",

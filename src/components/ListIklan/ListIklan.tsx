@@ -19,7 +19,8 @@ const ListIklan = (props: ListIklanProps) => {
       style={{
         display: "flex",
         justifyContent: "center",
-        alignItems: "stretch",
+        alignItems: "flex-start",
+        flexWrap: "wrap",
       }}
     >
       {props.iklans.map((item) => (

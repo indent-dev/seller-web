@@ -8,35 +8,67 @@ import {
 } from "@ant-design/icons";
 import { Iklan } from "../../types";
 
-type props = {
+type IklanProps = {
   item: Iklan;
   deleteItem: (id: string) => void;
 };
 
 const text = "Are you sure to delete this iklan?";
 
-const IklanItem = (props: props) => {
+const IklanItem = (props: IklanProps) => {
   const item = props.item;
   return (
     <div>
-      <Card hoverable style={{ width: 300, textAlign: "center" }}>
+      <Card
+        hoverable
+        className="styleCard"
+        cover={<img src={item.image} alt="" style={{ width: "100%" }} />}
+      >
         <div style={{ textAlign: "left" }}>
-          <img
-            src="https://upload.wikimedia.org/wikipedia/en/thumb/3/3b/SpongeBob_SquarePants_character.svg/1200px-SpongeBob_SquarePants_character.svg.png"
-            alt=""
-            style={{ width: "100%", marginBottom: "15px" }}
-          />
-          <h2 style={{ fontWeight: "bold" }}>{item.product_name}</h2>
+          <h3 style={{ fontWeight: "bold" }}>{item.product_name}</h3>
           <h2>Rp. {item.price}</h2>
-          <h4>Category: {item.category.name}</h4>
-          <Divider />
-          <h5 style={{ color: "#999" }}>
+          <h5>Category: {item.category.name}</h5>
+          <div
+            style={{
+              margin: "5px 0",
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+            }}
+          >
+            <Button
+              type="primary"
+              shape="round"
+              className="btn"
+              icon={<EditOutlined />}
+            >
+              Edit
+            </Button>
+            <Popconfirm
+              placement="top"
+              title={text}
+              onConfirm={() => props.deleteItem(item._id)}
+              okText="Yes"
+              cancelText="No"
+            >
+              <Button
+                type="primary"
+                danger
+                shape="round"
+                className="btn"
+                icon={<DeleteOutlined />}
+              >
+                Delete
+              </Button>
+            </Popconfirm>
+          </div>
+          <Divider style={{ margin: "10px 0" }} />
+          <small style={{ color: "#999" }}>
             <CalendarOutlined style={{ marginRight: "5px" }} />
             {item.createdAt}
-          </h5>
+          </small>
         </div>
       </Card>
-      ,
     </div>
   );
 };
