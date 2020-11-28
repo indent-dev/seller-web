@@ -13,6 +13,29 @@ type IklanProps = {
   deleteItem: (id: string) => void;
 };
 
+const convertDate = (dates: Date) => {
+  const date = new Date(dates); // had to remove the colon (:) after the T in order to make it work
+  const day = date.getDate();
+  const monthIndex = date.getMonth();
+  const year = date.getFullYear();
+  const minutes = date.getMinutes();
+  const hours = date.getHours();
+  const seconds = date.getSeconds();
+  const myFormattedDate =
+    day +
+    "-" +
+    (monthIndex + 1) +
+    "-" +
+    year +
+    " " +
+    hours +
+    ":" +
+    minutes +
+    ":" +
+    seconds;
+  return myFormattedDate;
+};
+
 const text = "Are you sure to delete this iklan?";
 
 const IklanItem = (props: IklanProps) => {
@@ -65,7 +88,7 @@ const IklanItem = (props: IklanProps) => {
           <Divider style={{ margin: "10px 0" }} />
           <small style={{ color: "#999" }}>
             <CalendarOutlined style={{ marginRight: "5px" }} />
-            {item.createdAt}
+            {convertDate(item.createdAt)}
           </small>
         </div>
       </Card>

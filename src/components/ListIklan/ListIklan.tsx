@@ -5,12 +5,13 @@ import { message } from "antd";
 
 type ListIklanProps = {
   iklans: Iklan[];
+  setIklans: (iklan: Iklan[]) => void;
 };
 
 const ListIklan = (props: ListIklanProps) => {
   const deleteItem = (id: string) => {
-    // const newItems = items.filter((item) => item._id !== id);
-    // setItems(newItems);
+    const newItems = props.iklans.filter((item) => item._id !== id);
+    props.setIklans(newItems);
     message.info(`${id} deleted successfully!`);
   };
 

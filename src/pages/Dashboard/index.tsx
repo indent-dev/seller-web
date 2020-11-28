@@ -72,7 +72,7 @@ const Dashboard = () => {
           </Button>
         </Row>
 
-        <ListIklan iklans={listIklan} />
+        <ListIklan iklans={listIklan} setIklans={setListIklan} />
       </Content>
       <Footer
         style={{ textAlign: "center", color: "#fff", backgroundColor: "#000" }}
